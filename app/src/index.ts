@@ -31,8 +31,10 @@ server.listen(port, () => {
 const startSensorAtPort = (usbPort: string) => {
     const ciss =  new BoschCiss(usbPort);
     ciss.subject.subscribe((data:any)=>{
+        console.log(`on subscribe`);
         const sensorData:ISensorData = data as ISensorData
-        
+        console.log(`on subscribe`,data);
+
         io.emit('bridge/acceleration', {
             accelerationX: sensorData.accelerationX,
             accelerationY: sensorData.accelerationY,
