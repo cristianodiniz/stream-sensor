@@ -93,10 +93,9 @@ export class BoschCiss {
         return dataString;
     }
 
-    private async write(data: number[], wait: number = 500): Promise<void> {
+    private async write(data: number[], wait: number = 5000): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.port.write(data, (error) => {
-                console.log('Write: ' + this.toHex(data));
 
                 if (error) {
                     console.log('Error on write: ', error.message);
