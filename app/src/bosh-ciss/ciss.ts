@@ -11,7 +11,7 @@ export class BoschCiss {
 
     constructor(deviceName: string) {
         this.port = new SerialPort('/dev/' + deviceName, {
-            baudRate: 115200
+            baudRate: 90000
         }, (error) => {
             if (error) {
                 console.log('Error: ' + error);
