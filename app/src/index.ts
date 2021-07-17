@@ -29,42 +29,73 @@ server.listen(port, () => {
 });
 
 const startSensorAtPort = (usbPort: string) => {
-    const ciss =  new BoschCiss(usbPort);
-    ciss.subject.subscribe((data:any)=>{
+    const ciss = new BoschCiss(usbPort);
+    ciss.subject.subscribe((data: any) => {
         console.log(`on subscribe`);
-        const sensorData:ISensorData = data as ISensorData
-        console.log(`on subscribe`,data);
+        const sensorData: ISensorData = data as ISensorData
+        console.log(`on subscribe`, data);
 
-        io.emit('bridge/acceleration', {
-            accelerationX: sensorData.accelerationX,
-            accelerationY: sensorData.accelerationY,
-            accelerationZ: sensorData.accelerationZ,
-        });
-        io.emit('bridge/gyro', {
-            gyroX: sensorData.gyroX,
-            gyroY: sensorData.gyroY,
-            gyroZ: sensorData.gyroZ,
-        });
-        io.emit('bridge/humidity', {
-            humidity: sensorData.humidity,
-        });
-        io.emit('bridge/light', {
-            light: sensorData.light,
-        });
-        io.emit('bridge/magnetometer', {
-            magnetometerX: sensorData.magnetometerX,
-            magnetometerY: sensorData.magnetometerY,
-            magnetometerZ: sensorData.magnetometerZ,
-        });
-        io.emit('bridge/noise', {
-            noise: sensorData.noise,
-        });
-        io.emit('bridge/pressure', {
-            pressure: sensorData.pressure,
-        });
-        io.emit('bridge/temperature', {
-            temperature: sensorData.temperature,
-        });
+        const { accelerationX, accelerationY, accelerationZ } = sensorData
+        if (accelerationX && accelerationY && accelerationZ) {
+            io.emit('bridge/acceleration', {
+                accelerationX,
+                accelerationY,
+                accelerationZ,
+            });
+        }
+
+        const { gyroX, gyroY, gyroZ } = sensorData
+        if (gyroX && gyroY && gyroZ) {
+            io.emit('bridge/gyro', {
+                gyroX,
+                gyroY,
+                gyroZ,
+            });
+        }
+
+        const { humidity } = sensorData
+        if (humidity) {
+            io.emit('bridge/humidity', {
+                humidity
+            });
+        }
+
+        const { light } = sensorData
+        if (light) {
+            io.emit('bridge/light', {
+                light,
+            });
+        }
+
+        const { magnetometerX, magnetometerY, magnetometerZ } = sensorData
+        if (magnetometerX && magnetometerY && magnetometerZ) {
+            io.emit('bridge/magnetometer', {
+                magnetometerX,
+                magnetometerY,
+                magnetometerZ,
+            });
+        }
+
+        const { noise } = sensorData
+        if (noise) {
+            io.emit('bridge/noise', {
+                noise
+            });
+        }
+
+        const { pressure } = sensorData
+        if (pressure) {
+            io.emit('bridge/pressure', {
+                pressure,
+            });
+        }
+
+        const { temperature } = sensorData
+        if (temperature) {
+            io.emit('bridge/temperature', {
+                temperature,
+            });
+        }
     })
 }
 
