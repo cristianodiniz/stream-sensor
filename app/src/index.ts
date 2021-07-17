@@ -13,6 +13,10 @@ app.get('/', (req: any, res: any) => {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/positions', (req: any, res: any) => {
+    res.sendFile(__dirname + '/positions.json');
+});
+
 io.on('connection', (socket) => {
     socket.on('chat message', msg => {
         io.emit('chat message', msg);

@@ -1,0 +1,18 @@
+version: "3.1"
+services:
+    steam-app:
+        image: node:latest
+        # restart: always
+        volumes:
+            - ./app:/usr/app
+            - /dev/ttyACM0:/dev/ttyACM0
+        ports:
+            - 9090:3000
+        command: bash -c "cd /usr/app && npm i && npm run start"
+    
+        networks:
+            - bridge_net1
+
+networks: 
+    bridge_net1:
+        driver: bridge
