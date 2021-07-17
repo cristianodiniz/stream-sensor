@@ -81,6 +81,12 @@
             console.log("temperature",temperature)
             input.value  = temperature.temperature;
         });
+
+        socket.on('bridge/raw', (raw) =>{
+            console.log("raw",raw)
+        });
+
+        
     </script>
 </body>
 
