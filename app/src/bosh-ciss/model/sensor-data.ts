@@ -1,21 +1,5 @@
 import { MeasuredValues } from './measured-values';
-
-export interface ISensorData {
-    accelerationX?: number;
-    accelerationY?: number;
-    accelerationZ?: number;
-    gyroX?: number;
-    gyroY?: number;
-    gyroZ?: number;
-    magnetometerX?: number;
-    magnetometerY?: number;
-    magnetometerZ?: number;
-    temperature?: number;
-    humidity?: number;
-    pressure?: number;
-    light?: number;
-    noise?: number;
-}
+import { ISensorData } from './models';
 
 export class SensorData {
 
@@ -86,7 +70,6 @@ export class SensorData {
     private static toSigned32Bit(unsigned: number): number {
         return -(unsigned & 0x80000000) | (unsigned & 0x7fffffff);
     }
-
 
     public accelerationX?: number;
     public accelerationY?: number;
