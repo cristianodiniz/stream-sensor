@@ -36,7 +36,7 @@ const startSensorAtPort = (usbPort: string) => {
         console.log(`on subscribe`, data);
 
         const { accelerationX, accelerationY, accelerationZ } = sensorData
-        if (accelerationX && accelerationY && accelerationZ) {
+        if (accelerationX != null && accelerationY != null && accelerationZ != null) {
             io.emit('bridge/acceleration', {
                 accelerationX,
                 accelerationY,
@@ -45,7 +45,7 @@ const startSensorAtPort = (usbPort: string) => {
         }
 
         const { gyroX, gyroY, gyroZ } = sensorData
-        if (gyroX && gyroY && gyroZ) {
+        if (gyroX != null && gyroY != null && gyroZ != null) {
             io.emit('bridge/gyro', {
                 gyroX,
                 gyroY,
@@ -54,21 +54,21 @@ const startSensorAtPort = (usbPort: string) => {
         }
 
         const { humidity } = sensorData
-        if (humidity) {
+        if (humidity != null) {
             io.emit('bridge/humidity', {
                 humidity
             });
         }
 
         const { light } = sensorData
-        if (light) {
+        if (light != null) {
             io.emit('bridge/light', {
                 light,
             });
         }
 
         const { magnetometerX, magnetometerY, magnetometerZ } = sensorData
-        if (magnetometerX && magnetometerY && magnetometerZ) {
+        if (magnetometerX != null && magnetometerY != null && magnetometerZ != null) {
             io.emit('bridge/magnetometer', {
                 magnetometerX,
                 magnetometerY,
@@ -77,25 +77,28 @@ const startSensorAtPort = (usbPort: string) => {
         }
 
         const { noise } = sensorData
-        if (noise) {
+        if (noise != null) {
             io.emit('bridge/noise', {
                 noise
             });
         }
 
         const { pressure } = sensorData
-        if (pressure) {
+        if (pressure != null) {
             io.emit('bridge/pressure', {
                 pressure,
             });
         }
 
         const { temperature } = sensorData
-        if (temperature) {
+        if (temperature != null) {
             io.emit('bridge/temperature', {
                 temperature,
             });
         }
+
+        io.emit('bridge/raw', sensorData);
+
     })
 }
 

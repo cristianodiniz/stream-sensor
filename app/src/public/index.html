@@ -77,8 +77,9 @@
 
         var input = document.getElementById('temp');
 
-        socket.on('bridge/temperature', ({temperature}) =>{
-            input.value  = temperature;
+        socket.on('bridge/temperature', (temperature) =>{
+            console.log("temperature",temperature)
+            input.value  = temperature.temperature;
         });
     </script>
 </body>
