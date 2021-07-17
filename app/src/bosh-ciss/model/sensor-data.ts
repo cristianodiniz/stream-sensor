@@ -1,5 +1,21 @@
 import { MeasuredValues } from './measured-values';
-import { ISensorData } from './models';
+
+export interface ISensorData {
+    accelerationX?: number;
+    accelerationY?: number;
+    accelerationZ?: number;
+    gyroX?: number;
+    gyroY?: number;
+    gyroZ?: number;
+    magnetometerX?: number;
+    magnetometerY?: number;
+    magnetometerZ?: number;
+    temperature?: number;
+    humidity?: number;
+    pressure?: number;
+    light?: number;
+    noise?: number;
+}
 
 export class SensorData {
 
