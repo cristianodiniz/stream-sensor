@@ -2,7 +2,7 @@ import { BoschCiss } from "./bosh-ciss/ciss";
 import { ISensorData } from './bosh-ciss/model/sensor-data';
 import axios from "axios";
 
-const NL_SERVER_BASE_ENDPOINT = "http://192.168.130.10:18080/api"
+const NL_SERVER_BASE_ENDPOINT = "http://192.168.130.10:18082/api"
 const NL_SERVER_EMAIL = "cristiano@nautiluslog.com"
 const NL_SERVER_KEY = "7ac600b59bb8e39733c114485050e30380ae979e"
 
