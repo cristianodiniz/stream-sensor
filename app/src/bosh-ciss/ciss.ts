@@ -57,7 +57,7 @@ export class BoschCiss {
 
             const sensorData: SensorData[] = MeasuredValues.toMeasuredValuesArray(serialData)
                 .map(SensorData.parseData);
-            this.subject
+
             this.subject.next({ timestamp: new Date(), data: sensorData });
         });
     }
