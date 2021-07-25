@@ -49,6 +49,7 @@ const sendSensorValue = (type: String, payload: any, token: String) => {
     });
 }
 
+let shouldSend = true;
 const startSensorAtPort = (usbPort: string) => {
     const ciss = new BoschCiss(usbPort);
     ciss.subject.subscribe((data: any) => {
@@ -57,12 +58,11 @@ const startSensorAtPort = (usbPort: string) => {
         console.log(`on subscribe`, data);
         handleSendSensorValue("bosch-ciss", data)
     })
+    setInterval(() => {
+        shouldSend = true
+    }, 60000)
 }
 
-let shouldSend = true;
-setInterval(() => {
-    shouldSend = true
-}, 60000)
 const handleSendSensorValue = (type: String, payload: any) => {
     if (shouldSend) {
         requetToken().then((response) => {
