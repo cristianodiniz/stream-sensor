@@ -5,7 +5,6 @@ import axios from "axios";
 const NL_SERVER_BASE_ENDPOINT = "http://192.168.130.10:18080/api"
 const NL_SERVER_EMAIL = "cristiano@nautiluslog.com"
 const NL_SERVER_KEY = "7ac600b59bb8e39733c114485050e30380ae979e"
-let NL_SERVER_TOKEN: String = "";
 
 const requetToken = () => {
     return axios.post(NL_SERVER_BASE_ENDPOINT + "/frontend/v1/sessions", {

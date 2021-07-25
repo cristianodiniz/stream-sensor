@@ -4,6 +4,7 @@ import { MeasuredValues } from './model/measured-values';
 import { SensorData } from './model/sensor-data';
 import { SerialData } from './model/serial-data';
 
+const ONE_MINUTE = 60000
 export class BoschCiss {
     public subject: Subject<{ timestamp: Date, data: SensorData[] }> = new Subject<{ timestamp: Date, data: SensorData[] }>();
 
@@ -92,8 +93,8 @@ export class BoschCiss {
 
         return dataString;
     }
-
-    private async write(data: number[], wait: number = 5000): Promise<void> {
+  
+    private async write(data: number[], wait: number = (ONE_MINUTE * 3)): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.port.write(data, (error) => {
 
