@@ -55,18 +55,25 @@ const startSensorAtPort = (usbPort: string) => {
         console.log(`on subscribe`);
         const sensorData: ISensorData = data as ISensorData
         console.log(`on subscribe`, data);
-        handleSendSensorValue("bosch-ciss",data)
+        handleSendSensorValue("bosch-ciss", data)
     })
 }
 
-
+let shouldSend = true;
+setInterval(() => {
+    shouldSend = true
+}, 60000)
 const handleSendSensorValue = (type: String, payload: any) => {
-    requetToken().then((response) => {
-        const token = response.data.data.token
-        sendSensorValue(type, payload, token)
-    }, (error) => {
-        console.log("requetToken", error);
-    });
+    if (shouldSend) {
+        requetToken().then((response) => {
+            const token = response.data.data.token
+            sendSensorValue(type, payload, token)
+        }, (error) => {
+            console.log("requetToken", error);
+        });
+        shouldSend = false
+    }
+
 }
 
 startSensorAtPort('ttyACM0');
