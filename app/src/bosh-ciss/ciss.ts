@@ -1,4 +1,5 @@
 import { Subject } from 'rxjs';
+import { mapTo, delay } from 'rxjs/operators';
 import SerialPort from 'serialport';
 import { MeasuredValues } from './model/measured-values';
 import { SensorData } from './model/sensor-data';
@@ -61,7 +62,7 @@ export class BoschCiss {
             const sensorData: SensorData[] = MeasuredValues.toMeasuredValuesArray(serialData)
                 .map(SensorData.parseData);
 
-            this.subject.next({ timestamp: new Date(), data: sensorData });
+            this.subject.pipe(mapTo({ timestamp: new Date(), data: sensorData }), delay(ONE_SECOND*10));
         });
     }
 
