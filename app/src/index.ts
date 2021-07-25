@@ -32,7 +32,7 @@ const sendSensorValue = (type: String, payload: any, token: String) => {
         },
         "content": {
             "imoNumber": 9535163,
-            "teamId": "db6379d4-6c64-4d19-9771-07fd6f9e7aaa",
+            "teamId": "d7ef066d-bbd3-4e99-a40c-0fd59d64e0dd",
             "label": type,
             "payloadVersion": 1,
             "payloadType": type,
@@ -53,9 +53,7 @@ let shouldSend = true;
 const startSensorAtPort = (usbPort: string) => {
     const ciss = new BoschCiss(usbPort);
     ciss.subject.subscribe((data: any) => {
-        console.log(`on subscribe`);
         const sensorData: ISensorData = data as ISensorData
-        console.log(`on subscribe`, data);
         handleSendSensorValue("bosch-ciss", data)
     })
     setInterval(() => {
@@ -67,6 +65,7 @@ const handleSendSensorValue = (type: String, payload: any) => {
     if (shouldSend) {
         requetToken().then((response) => {
             const token = response.data.data.token
+            const userId  = response.data.data.user_d
             sendSensorValue(type, payload, token)
         }, (error) => {
             console.log("requetToken", error);
