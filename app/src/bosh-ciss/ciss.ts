@@ -4,7 +4,9 @@ import { MeasuredValues } from './model/measured-values';
 import { SensorData } from './model/sensor-data';
 import { SerialData } from './model/serial-data';
 
-const ONE_MINUTE = 60000
+
+const ONE_SECOND = 1000
+const ONE_MINUTE = ONE_SECOND * 60
 export class BoschCiss {
     public subject: Subject<{ timestamp: Date, data: SensorData[] }> = new Subject<{ timestamp: Date, data: SensorData[] }>();
 
@@ -65,11 +67,11 @@ export class BoschCiss {
 
     private calcCrc(buffer: number[]): number {
         let result = 0;
-    
+
         buffer.forEach((v: number) => result ^= v);
-    
+
         result ^= 254;
-    
+
         return result;
     }
 
@@ -93,8 +95,8 @@ export class BoschCiss {
 
         return dataString;
     }
-  
-    private async write(data: number[], wait: number = (ONE_MINUTE * 3)): Promise<void> {
+
+    private async write(data: number[], wait: number = (ONE_SECOND * 5)): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.port.write(data, (error) => {
 
