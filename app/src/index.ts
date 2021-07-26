@@ -17,19 +17,19 @@ const sendSensorValue = (type: String, payload: any, token: String) => {
 
     const endpoint = NL_SERVER_BASE_ENDPOINT + "/mobile/v1/genericentities"
     const body = {
-        "decoration": {
-            "channels": ["channel1", "channel2"],
-            "metadata": [
-                {
-                    "name": "name1",
-                    "value": "value1"
-                },
-                {
-                    "name": "name2",
-                    "value": "value2"
-                }
-            ]
-        },
+        // "decoration": {
+        //     "channels": ["channel1", "channel2"],
+        //     "metadata": [
+        //         {
+        //             "name": "name1",
+        //             "value": "value1"
+        //         },
+        //         {
+        //             "name": "name2",
+        //             "value": "value2"
+        //         }
+        //     ]
+        // },
         "content": {
             "imoNumber": 1234567,
             "teamId": "d7ef066d-bbd3-4e99-a40c-0fd59d64e0dd",
