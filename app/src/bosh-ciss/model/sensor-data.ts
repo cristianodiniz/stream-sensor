@@ -56,6 +56,9 @@ export class SensorData {
         }
 
         if (measuredValues.data[2] === 0x04) {
+            console.log("GYRO all",measuredValues.data)
+            console.log("GYRO [4]",measuredValues.data[4])
+            console.log("GYRO [3]",measuredValues.data[3])
             const gyroX: number = measuredValues.data[4] << 8 | measuredValues.data[3];
             const gyroY: number = measuredValues.data[6] << 8 | measuredValues.data[5];
             const gyroZ: number = measuredValues.data[8] << 8 | measuredValues.data[7];
