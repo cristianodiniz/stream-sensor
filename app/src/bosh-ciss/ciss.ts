@@ -57,6 +57,7 @@ export class BoschCiss {
 
     private handleDataEvents(): void {
         this.port.on('data', (data: string) => {
+            console.log("RAW DATA", data)
             const serialData: SerialData = new SerialData(data);
 
             const sensorData: SensorData[] = MeasuredValues.toMeasuredValuesArray(serialData)
