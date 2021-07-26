@@ -59,7 +59,7 @@ export class SensorData {
             const gyroX: number = measuredValues.data[4] << 8 | measuredValues.data[3];
             const gyroY: number = measuredValues.data[6] << 8 | measuredValues.data[5];
             const gyroZ: number = measuredValues.data[8] << 8 | measuredValues.data[7];
-
+            console.log("GYRO ",gyroX,gyroY,gyroZ)
             sensorData.gyro = new Gyro(gyroX, gyroY, gyroZ);
         }
 
@@ -70,7 +70,6 @@ export class SensorData {
 
             sensorData.magnetometer = new Magnetometer(magnetoX, magnetoY, magnetoZ)
         }
-
         return sensorData;
     }
 
